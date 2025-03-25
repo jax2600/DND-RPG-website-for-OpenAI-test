@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Etherrealm: Crimson Gauntlet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #1e1a18;
+      color: #f3e9d2;
+      font-family: 'Merriweather', serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+    header h1 {
+      font-family: 'IM Fell English SC', serif;
+      font-size: 3rem;
+      margin: 0;
+      color: #e5ba73;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: #e5ba73;
+      font-family: 'IM Fell English SC', serif;
+      margin: 2rem 0 1rem;
+    }
+    .map-image {
+      width: 100%;
+      max-width: 1200px;
+      display: block;
+      margin: 0 auto 2rem;
+      border: 2px solid #b88b4a;
+    }
+    .dice-roller {
+      text-align: center;
+      margin: 2rem auto;
+    }
+    .dice-button {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #4a3524;
+      border: 1px solid #b88b4a;
+      color: #f5f2e7;
+      border-radius: 5px;
+      margin: 0.25rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.3s ease;}
+    #universal-log {
+      background-color: #362b26;
+      color: #f5f2e7;
+      font-size: 0.85rem;
+      padding: 0.5rem;
+      border-radius: 6px;
+      width: 90%;
+      max-width: 800px;
+      margin: 1rem auto;
+      border: 1px solid #b88b4a;
+    }
+    .storyteller {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+    .storyteller img {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid #b88b4a;
+    }
+    .storyteller h2 {
+      margin-top: 0.5rem;
+      color: #e5ba73;
+      font-family: 'IM Fell English SC', serif;
+    }
+    .storyteller p {
+      padding: 0 1rem;
+    }
+    .party-section {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .character-card {
+      flex: 1 1 calc(25% - 2rem);
+      background-color: #2e2420;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 2px solid #b88b4a;
+      text-align: center;
+      max-width: 280px;
+    }
+    .character-card img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #b88b4a;
+    }
+    .character-card h3 {
+      font-size: 1.5rem;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;}
+    .character-card div[id$='-log'] {
+      background-color: #3b2f2a;
+      font-size: 0.8rem;
+      margin-top: 1rem;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #b88b4a;
+      min-height: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Etherrealm: The Crimson Gauntlet</h1>
+    <p style="text-align:center; max-width:800px; margin: 0 auto 1rem; font-size: 1rem; padding: 0 1rem;">
+      Four fated souls band together in Etherrealm’s darkest hour. Bound by relics, prophecy, and rebellion—they forge a path where myth bleeds into truth. Each carries secrets, burdens, and powers awakened by the ticking pulse of the realm’s unraveling fate.
+    </p>
+  </header>
+
+  <section class="storyteller">
+    <img src="https://raw.githubusercontent.com/jax2600/DND-RPG-website-for-OpenAI-test/main/assets/characters/quenyth-gearwhisper.png" alt="Storyteller">
+    <h2>STORYTELLER<br>Quenyth Gearwhisper</h2>
+    <p>Quenyth Gearwhisper peers through steam-misted lenses into the threads of fate, their voice echoing like a symphony of brass and prophecy. Mysterious yet precise, they chronicle the tale of the Crimson Gauntlet with verses fueled by cogwork rhythm and myth.</p>
+  </section>
+
+  <section class="dice-roller">
+    <h2 class="section-title">Universal Dice Roller</h2>
+    <div>
+      <input type="number" id="mod-input" placeholder="Add modifier..." style="margin-bottom: 1rem; padding: 0.5rem; border-radius: 4px; border: 1px solid #b88b4a;">
+      <br>
+      <button class="dice-button" onclick="rollUniversal(4)">d4</button>
+      <button class="dice-button" onclick="rollUniversal(6)">d6</button>
+      <button class="dice-button" onclick="rollUniversal(10)">d10</button>
+      <button class="dice-button" onclick="rollUniversal(12)">d12</button>
+      <button class="dice-button" onclick="rollUniversal(20)">d20</button>
+      <button class="dice-button" onclick="rollUniversal(100)">d100</button>
+    </div>
+    <div id="universal-log"></div>
+  </section>
+
+  <section>
+    <div class="section-title">Map of the Etherrealm</div>
+    <img class="map-image" src="https://raw.githubusercontent.com/jax2600/DND-RPG-website-for-OpenAI-test/main/assets/etherrealm-map.png" alt="Map of Etherrealm">
+  </section>
+
+  <div class="section-title">Adventuring Party</div>
+  <section class="party-section">
+    <div class="character-card">
+      <img src="https://raw.githubusercontent.com/jax2600/DND-RPG-website-for-OpenAI-test/main/assets/characters/elandor-flamesong.png" alt="Elandor Flamesong">
+      <h3>Elandor<br>Flamesong</h3>
+      <p>Tiefling bard whose voice can stir steel to dance.</p>
+      <p><strong>STR:</strong> +1 <button class="dice-button" onclick="rollUniversal(20)">Roll STR</button></p>
+      <p><strong>DEX:</strong> +2 <button class="dice-button" onclick="rollUniversal(20)">Roll DEX</button></p>
+      <p><strong>CON:</strong> +1 <button class="dice-button" onclick="rollUniversal(20)">Roll CON</button></p>
+      <p><strong>INT:</strong> +3 <button class="dice-button" onclick="rollUniversal(20)">Roll INT</button></p>
+      <p><strong>WIS:</strong> +2 <button class="dice-button" onclick="rollUniversal(20)">Roll WIS</button></p>
+      <p><strong>CHA:</strong> +4 <button class="dice-button" onclick="rollUniversal(20)">Roll CHA</button></p>
+      
+      <div id="elandor-log"></div>
+    </div>
+    <div class="character-card">
+      <img src="https://raw.githubusercontent.com/jax2600/DND-RPG-website-for-OpenAI-test/main/assets/characters/thalia-moonshadow.png" alt="Thalia Moonshadow">
+      <h3>Thalia<br>Moonshadow</h3>
+      <p>Elven ranger swift of step and sharper in aim.</p>
+      <p><strong>STR:</strong> +2 <button class="dice-button" onclick="rollUniversal(20)">Roll STR</button></p>
+      <p><strong>DEX:</strong> +4 <button class="dice-button" onclick="rollUniversal(20)">Roll DEX</button></p>
+      <p><strong>CON:</strong> +2 <button class="dice-button" onclick="rollUniversal(20)">Roll CON</button></p>
+      <p><strong>INT:</strong> +1 <button class="dice-button" onclick="rollUniversal(20)">Roll INT</button></p>
+      <p><strong>WIS:</strong> +3 <button class="dice-button" onclick="rollUniversal(20)">Roll WIS</button></p>
+      <p><strong>CHA:</strong> +1 <button class="dice-button" onclick="rollUniversal(20)">Roll CHA</button></p>
+      
+      <div id="thalia-log"></div>
+    </div>
+    <div class="character-card">
+      <img src="https://raw.githubusercontent.com/jax2600/DND-RPG-website-for-OpenAI-test/main/assets/characters/mira-the-whisper.png" alt="Mira the Whisper">
+      <h3>Mira<br>The Whisper</h3>
+      <p>Human rogue cloaked in secrets and silent steps.</p>
+      <p><strong>STR:</strong> +1 <button class="dice-button" onclick="rollUniversal(20)">Roll STR</button></p>
+      <p><strong>DEX:</strong> +5 <button class="dice-button" onclick="rollUniversal(20)">Roll DEX</button></p>
+      <p><strong>CON:</strong> +2 <button class="dice-button" onclick="rollUniversal(20)">Roll CON</button></p>
+      <p><strong>INT:</strong> +3 <button class="dice-button" onclick="rollUniversal(20)">Roll INT</button></p>
+      <p><strong>WIS:</strong> +2 <button class="dice-button" onclick="rollUniversal(20)">Roll WIS</button></p>
+      <p><strong>CHA:</strong> +2 <button class="dice-button" onclick="rollUniversal(20)">Roll CHA</button></p>
+      
+      <div id="mira-log"></div>
+    </div>
+    <div class="character-card">
+      <img src="https://raw.githubusercontent.com/jax2600/DND-RPG-website-for-OpenAI-test/main/assets/characters/borik-ironfist.png" alt="Borik Ironfist">
+      <h3>Borik<br>Ironfist</h3>
+      <p>Dwarven paladin shielded by faith and honor.</p>
+      <p><strong>STR:</strong> +4 <button class="dice-button" onclick="rollUniversal(20)">Roll STR</button></p>
+      <p><strong>DEX:</strong> +0 <button class="dice-button" onclick="rollUniversal(20)">Roll DEX</button></p>
+      <p><strong>CON:</strong> +3 <button class="dice-button" onclick="rollUniversal(20)">Roll CON</button></p>
+      <p><strong>INT:</strong> +1 <button class="dice-button" onclick="rollUniversal(20)">Roll INT</button></p>
+      <p><strong>WIS:</strong> +2 <button class="dice-button" onclick="rollUniversal(20)">Roll WIS</button></p>
+      <p><strong>CHA:</strong> +2 <button class="dice-button" onclick="rollUniversal(20)">Roll CHA</button></p>
+      
+      <div id="borik-log"></div>
+    </div>
+  </section>
+  <div style="text-align: center; font-size: 0.9rem; color: #ccc; margin-top: 2rem;">
+    Contact the chronicler: <a href="https://t.me/JacqueC_art" style="color: #e5ba73; text-decoration: none;">@JacqueC_art</a> on Telegram
+  </div>
+
+  <script>
+    function rollUniversal(sides) {
+      const mod = parseInt(document.getElementById("mod-input").value) || 0;
+      const roll = Math.floor(Math.random() * sides) + 1;
+      const total = roll + mod;
+      const time = new Date().toLocaleTimeString();
+      let result = `[${time}] d${sides} → ${roll}`;
+      if (mod !== 0) result += ` + ${mod} = ${total}`;
+      if (sides === 20 && roll === 20) result += " — Critical Success!";
+      if (sides === 20 && roll === 1) result += " — Critical Fail!";
+      const log = document.getElementById("universal-log");
+      const div = document.createElement("div");
+      div.textContent = result;
+      log.prepend(div);
+    }
+  </script>
+</body>
+</html>
